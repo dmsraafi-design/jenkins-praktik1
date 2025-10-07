@@ -2,29 +2,20 @@ pipeline {
     agent {
         docker {
             image 'python:3.10'
+            args '-u root'
         }
     }
-        environment {
-            VENV = 'venv'
-        }
+
     stages {
-        stage('Setup Environment & Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
-                sh '''
-                    python -m venv $VENV
-                    . $VENV/bin/active
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                '''
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh '''
-                    . $VENV/bin/active
-                    pytest test_app.py
-                '''
+                sh 'pytest test_app.py'
             }
         }
 
@@ -45,13 +36,13 @@ pipeline {
         success {
             script {
                 def payload = [
-                    content: "✅ Build SUCCESS on `${env.BRANCH_NAME}`\nURL: ${env.BUILD_URL}"
+                    content: "✅ Build SUCCESS on `${env.BRANCH_NAME}`\n🔗URL: ${env.BUILD_URL}"
                 ]
                 httpRequest(
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discordapp.com/api/webhooks/1424950960287125656/gqCFXQxbEmvfqSkY5DF5uiikGpBxqggddC7-5BmVKhSkYNUzR7f_dlWFB717u1gh8p4x'
+                    url: 'https://discord.com/api/webhooks/1424938849984974951/_uImmwS8YgLPEEQzEtggphicpRbSfHNzZ5zwCyTI5p22CKSMxHOgTUppIqQuiSmiSBOv'
                 )
             }
         }
@@ -59,13 +50,13 @@ pipeline {
         failure {
             script {
                 def payload = [
-                    content: "❌ Build FAILED on `${env.BRANCH_NAME}`\nURL: ${env.BUILD_URL}"
+                    content: "❌ Build FAILED on `${env.BRANCH_NAME}`\n🔗URL: ${env.BUILD_URL}"
                 ]
                 httpRequest(
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discordapp.com/api/webhooks/1424950960287125656/gqCFXQxbEmvfqSkY5DF5uiikGpBxqggddC7-5BmVKhSkYNUzR7f_dlWFB717u1gh8p4x'
+                    url: 'https://discord.com/api/webhooks/1424938849984974951/_uImmwS8YgLPEEQzEtggphicpRbSfHNzZ5zwCyTI5p22CKSMxHOgTUppIqQuiSmiSBOv'
                 )
             }
         }
