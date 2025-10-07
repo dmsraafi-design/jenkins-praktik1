@@ -42,7 +42,7 @@ pipeline {
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discord.com/api/webhooks/1424938849984974951/_uImmwS8YgLPEEQzEtggphicpRbSfHNzZ5zwCyTI5p22CKSMxHOgTUppIqQuiSmiSBOv'
+                    url: 'https://discordapp.com/api/webhooks/1424950960287125656/gqCFXQxbEmvfqSkY5DF5uiikGpBxqggddC7-5BmVKhSkYNUzR7f_dlWFB717u1gh8p4x'
                 )
             }
         }
@@ -56,7 +56,7 @@ pipeline {
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discord.com/api/webhooks/1424938849984974951/_uImmwS8YgLPEEQzEtggphicpRbSfHNzZ5zwCyTI5p22CKSMxHOgTUppIqQuiSmiSBOv'
+                    url: 'https://discordapp.com/api/webhooks/1424950960287125656/gqCFXQxbEmvfqSkY5DF5uiikGpBxqggddC7-5BmVKhSkYNUzR7f_dlWFB717u1gh8p4x'
                 )
             }
         }
